@@ -102,8 +102,7 @@
      local Side = Instance.new("Frame")
      local SideC = Instance.new("UICorner")
      local ImgBar = Instance.new("Frame")
-     local Logo = Instance.new("ImageLabel")
-     local Logo2 = Instance.new("ImageLabel")
+     local Logo = Instance.new("TextLabel")
      local TabHolder = Instance.new("ScrollingFrame")
      local TabHolderL = Instance.new("UIListLayout")
      local SideBar = Instance.new("Frame")
@@ -159,25 +158,10 @@
      Logo.BorderSizePixel = 0
      Logo.Position = UDim2.new(0, 6, 0, 5)
      Logo.Size = UDim2.new(0, 130, 0, 71)
-     Logo.Image = "http://www.roblox.com/asset/?id="..id
-     Logo.ImageColor3 = Color3.fromRGB(194, 149, 2)
-
-     Logo2.Name = "Logo2"
-     Logo2.Parent = Side
-     Logo2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-     Logo2.BackgroundTransparency = 1
-     Logo2.BorderSizePixel = 0
-     Logo2.Position = UDim2.new(0, 6, 0, 5)
-     Logo2.Size = UDim2.new(0, 130, 0, 71)
-     if game.Players.LocalPlayer:IsInGroup(7671821) then
-     Logo2.Image = "http://www.roblox.com/asset/?id=18694772916"
-     else
-     Logo2.Image = "http://www.roblox.com/asset/?id=18728285870"
-     end
-     Logo2.ImageColor3 = Color3.fromRGB(194, 149, 2)
-     
-     --Logo2.ImageColor3 = Color3.fromRGB(194, 149, 2)
-
+     Logo.Text = "CHROMATIC"
+     Logo.Font = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+     Logo.TextColor3 = Color3.fromRGB(194, 50, 115)
+     Logo.Rotation = -5
  
      TabHolder.Name = "TabHolder"
      TabHolder.Parent = Side
