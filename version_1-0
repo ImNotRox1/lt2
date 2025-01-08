@@ -159,7 +159,7 @@
      Logo.BorderSizePixel = 0
      Logo.Position = UDim2.new(0, 6, 0, 5)
      Logo.Size = UDim2.new(0, 130, 0, 71)
-     Logo.Image = "rbassetid://92356153527862"
+     Logo.Image = "http://www.roblox.com/asset/?id="..id
      Logo.ImageColor3 = Color3.fromRGB(194, 149, 2)
 
      Logo2.Name = "Logo2"
@@ -4437,7 +4437,7 @@ end
 
 
 
-local UI = library:Create("18568104635") -- Roblox ID for the image you uploaded
+local UI = library:Create("92356153527862") -- Roblox ID for the image you uploaded
 local Tab
 local Section
 
