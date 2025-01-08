@@ -102,7 +102,8 @@
      local Side = Instance.new("Frame")
      local SideC = Instance.new("UICorner")
      local ImgBar = Instance.new("Frame")
-     local Logo = Instance.new("TextLabel")
+     local Logo = Instance.new("ImageLabel")
+     local Logo2 = Instance.new("ImageLabel")
      local TabHolder = Instance.new("ScrollingFrame")
      local TabHolderL = Instance.new("UIListLayout")
      local SideBar = Instance.new("Frame")
@@ -158,10 +159,8 @@
      Logo.BorderSizePixel = 0
      Logo.Position = UDim2.new(0, 6, 0, 5)
      Logo.Size = UDim2.new(0, 130, 0, 71)
-     Logo.Text = "CHROMATIC"
-     Logo.Font = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal)
-     Logo.TextColor3 = Color3.fromRGB(194, 50, 115)
-     Logo.Rotation = -5
+     Logo.Image = "http://www.roblox.com/asset/?id="..id
+     Logo.ImageColor3 = Color3.fromRGB(194, 149, 2)
  
      TabHolder.Name = "TabHolder"
      TabHolder.Parent = Side
@@ -4421,7 +4420,7 @@ end
 
 
 
-local UI = library:Create("92356153527862") -- Roblox ID for the image you uploaded
+local UI = library:Create("84088830604231") -- Roblox ID for the image you uploaded
 local Tab
 local Section
 
