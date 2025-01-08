@@ -3,12 +3,12 @@
  local mouse = game.Players.LocalPlayer:GetMouse()
  
  local theme = {
-     main = Color3.fromRGB(54, 57, 64),
-     secondary = Color3.fromRGB(48, 49, 54),
-     accent = Color3.fromRGB(36, 37, 40),
-     accentsecondary = Color3.fromRGB(23, 22, 27),
+     main = Color3.fromRGB(15, 15, 15),
+     secondary = Color3.fromRGB(25, 25, 25),
+     accent = Color3.fromRGB(35, 35, 35),
+     accentsecondary = Color3.fromRGB(20, 20, 20),
      textcolor = Color3.fromRGB(225,225,225),
-     lightcontrast = Color3.fromRGB(194, 149, 2)
+     lightcontrast = Color3.fromRGB(194, 50, 115)
   }
  
  function UnHideContent(path,name)
