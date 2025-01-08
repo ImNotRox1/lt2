@@ -160,7 +160,7 @@
      Logo.Position = UDim2.new(0, 6, 0, 5)
      Logo.Size = UDim2.new(0, 130, 0, 71)
      Logo.Image = "http://www.roblox.com/asset/?id="..id
-     Logo.ImageColor3 = Color3.fromRGB(194, 50, 115)
+     Logo.ImageColor3 = Color3.fromRGB(194, 51, 175)
  
      TabHolder.Name = "TabHolder"
      TabHolder.Parent = Side
