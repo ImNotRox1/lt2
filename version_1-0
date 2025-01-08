@@ -4498,453 +4498,453 @@ local Section
 
 
  --#region World
- Tab1 = UI:CreateTab("World","6034287522") ----------------------------------------------------------------------------------------------------------------------
- Section = Tab1:CreateSection("Lighting") -----------------------------------------------------------------------------------------------------------------------
- 
- 
- 
- Section:Toggle("Always day",true,function(Value)
-     AlwaysDay = Value
+Tab = UI:CreateTab("World","6034287522") ----------------------------------------------------------------------------------------------------------------------
+Section = Tab:CreateSection("Lighting") -----------------------------------------------------------------------------------------------------------------------
+
+
+
+Section:Toggle("Always day",true,function(Value)
+    AlwaysDay = Value
+end)
+
+
+Section:Toggle("Always night",false,function(Value)
+    AlwaysNight = Value
+end)
+
+
+Section:Toggle("NoFog",true,function(Value)
+    NoFog = Value
+end)
+
+Section:Toggle("Shadows",true,function(Value)
+    game:GetService("Lighting").GlobalShadows = Value
+end)
+
+
+Section = Tab:CreateSection("Teleports") -----------------------------------------------------------------------------------------------------------------------
+
+
+Section:PlrList("Teleport to player",true,false,function(Value)
+    TeleportToPlayer(Value)
+end)
+
+
+Section:PlrList("Teleport to player's plot",true,true,function(Value)
+    TeleportToPlayerPlot(Value)
+end)
+
+
+Section = Tab:CreateSection("Water")
+
+
+Section:Button("Better water",function()
+    for i, v in next, game.Workspace:GetDescendants() do         if v:IsA("Part") and v.Name == "SeaSand" then             v.Size = Vector3.new(2048, 60, 2048)         end     end     for i, v in next, game.Workspace:GetDescendants() do         if v:IsA("Part") and v.Name == "Water" then             v.Size = Vector3.new(20480, 6, 20080)             game.Workspace.Terrain:fillBlock(v.CFrame, v.Size, Enum.Material.Water)             v:Destroy()         end     end
+end)
+
+
+Section:Toggle("Walk on water",false,function(Value)
+    WalkOnWater(Value)
+end)
+
+
+Section:Toggle("Remove water",false,function(Value)
+    RemoveWater(Value)
+end)
+
+
+Section = Tab:CreateSection("World")
+
+
+Section:Button("B-Tools",function()
+    BTools()
+end)
+
+
+Section:Toggle("Bridge",false,function(Value)
+    BridgeDown(Value)
+end)
+
+
+Section:Toggle("Remove boulders",false,function(Value)
+    RemoveBoulders(Value)
+end)
+--#endregion
+
+
+ --#region Wood
+ Tab = UI:CreateTab("Wood","6034503369") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Get Tree") ----------------------------------------------------------------------------------------------------------------------
+
+ Section:DropDown("Select Tree",{"Oak", "Generic", "Cherry", "Birch", "Volcano", "GoldSwampy", "GreenSwampy", "Walnut", "Palm", "Fir", "Pine", "SnowGlow", "Frost", "Koa", "CaveCrawler", "LoneCave", "Spooky","SpookyNeon"},false,function(Value)
+	getgenv().TreeToGet = Value
  end)
- 
- 
- Section:Toggle("Always night",false,function(Value)
-     AlwaysNight = Value
+
+ getgenv().TreeToGet = "Generic"
+
+ Section:Slider("Amount",1,1,50,false,function(Value)
+    getgenv().TreeAmount = Value
  end)
- 
- 
- Section:Toggle("NoFog",true,function(Value)
-     NoFog = Value
+
+
+ Section:Button("Get Tree",function()
+    library:Notify("Butter!","Geting " .. getgenv().TreeToGet,1.5)
+    treeCutNoRequire(getgenv().TreeToGet, getgenv().TreeAmount)
  end)
- 
- Section:Toggle("Shadows",true,function(Value)
-     game:GetService("Lighting").GlobalShadows = Value
- end)
- 
- 
- Section = Tab:CreateSection("Teleports") -----------------------------------------------------------------------------------------------------------------------
- 
- 
- Section:PlrList("Teleport to player",true,false,function(Value)
-     TeleportToPlayer(Value)
- end)
- 
- 
- Section:PlrList("Teleport to player's plot",true,true,function(Value)
-     TeleportToPlayerPlot(Value)
- end)
- 
- 
- Section = Tab:CreateSection("Water")
- 
- 
- Section:Button("Better water",function()
-     for i, v in next, game.Workspace:GetDescendants() do         if v:IsA("Part") and v.Name == "SeaSand" then             v.Size = Vector3.new(2048, 60, 2048)         end     end     for i, v in next, game.Workspace:GetDescendants() do         if v:IsA("Part") and v.Name == "Water" then             v.Size = Vector3.new(20480, 6, 20080)             game.Workspace.Terrain:fillBlock(v.CFrame, v.Size, Enum.Material.Water)             v:Destroy()         end     end
- end)
- 
- 
- Section:Toggle("Walk on water",false,function(Value)
-     WalkOnWater(Value)
- end)
- 
- 
- Section:Toggle("Remove water",false,function(Value)
-     RemoveWater(Value)
- end)
- 
- 
- Section = Tab:CreateSection("World")
- 
- 
- Section:Button("B-Tools",function()
-     BTools()
- end)
- 
- 
- Section:Toggle("Bridge",false,function(Value)
-     BridgeDown(Value)
- end)
- 
- 
- Section:Toggle("Remove boulders",false,function(Value)
-     RemoveBoulders(Value)
- end)
- --#endregion
- 
- 
-  --#region Wood
-  Tab2 = UI:CreateTab("Wood","6034503369") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab2:CreateSection("Get Tree") ----------------------------------------------------------------------------------------------------------------------
- 
-  Section:DropDown("Select Tree",{"Oak", "Generic", "Cherry", "Birch", "Volcano", "GoldSwampy", "GreenSwampy", "Walnut", "Palm", "Fir", "Pine", "SnowGlow", "Frost", "Koa", "CaveCrawler", "LoneCave", "Spooky","SpookyNeon"},false,function(Value)
-     getgenv().TreeToGet = Value
-  end)
- 
-  getgenv().TreeToGet = "Generic"
- 
-  Section:Slider("Amount",1,1,50,false,function(Value)
-     getgenv().TreeAmount = Value
-  end)
- 
- 
-  Section:Button("Get Tree",function()
-     library:Notify("Butter!","Geting " .. getgenv().TreeToGet,1.5)
-     treeCutNoRequire(getgenv().TreeToGet, getgenv().TreeAmount)
-  end)
- 
-  Section:Button("Stop",function()
-     getgenv().treestop = true
-  end)
- 
-  Section:Button("Sell tree",function()
-     SellTree()
-  end)
- 
-  Section = Tab:CreateSection("Wood Help") --------------------------------------------------------------------------------------------------------------------
- 
-  Section:Toggle("Wood Selector Lasso",false,function(Value)
-     getgenv().Lasso = Value
-  end)
- 
- 
-  Section:Toggle("One Unit Cutter",false,function(Value)
-     OneUnitCutter(Value)
-  end)
- 
- 
-  Section:Button("Sell Selected",function()
-     SellSelected()
-  end)
- 
-  Section:Button("Stop Sell",function()
-     getgenv().StopSellSelected = true
-  end)
- 
-  Section:Button("Deselect all",function()
-     DeselectAll()
-  end)
- 
- 
-  Section = Tab:CreateSection("Mod Wood") --------------------------------------------------------------------------------------------------------------------
- 
- 
-  Section:Button("Mod Sawmill",function()
-     ModSawmill()
-  end)
- 
-  Section:Button("Mod Wood",function()
-     Modwood()
-  end)
- 
-  Section:Button("Stop Mod",function()
-     getgenv().ModStop = true
-  end)
- 
-  Section = Tab:CreateSection("Wood Teleport") --------------------------------------------------------------------------------------------------------------------
- 
-  Section:Button("Get Cut Trees",function()
-     GetCutTrees()
-  end)
- 
- --#endregion
-  
- 
-  --#region Slot
-  Tab3 = UI:CreateTab("Slot","6034333276") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab3:CreateSection("Base Help") ---------------------------------------------------------------------------------------------------------------------
- 
-  Section:Button('Free Land', function()
-      FreeLand()
-  end)
- 
-  Section:Button('Max Land', function()
-      MaxLand()
-  end)
- 
-  Section:Toggle("Land Art",false,function(Value)
-      LandArt(Value)
-  end)
- 
-  Section:Button('Force Save', function()
-     Forcesave()
-  end)
- 
- --#endregion
- 
- 
-  --#region Dupe
-  Tab4 = UI:CreateTab("Dupe","6035053278") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab4:CreateSection("Axe Dupe") ----------------------------------------------------------------------------------------------------------------------
- 
-  Section:Slider("Slot",1,1,6,false,function(Value)
-     getgenv().Slot = Value
-  end)
- 
-  Section:Slider("WaitTime",1,-1,30,true,function(Value)
-     getgenv().WaitTime = Value
-  end)
- 
-  Section:Slider("Amount",1,1,30,false,function(Value)
-     getgenv().AxeDupeAmount = Value
-  end)
- 
-  Section:Button("Axe Dupe",function()
-     AxeDupe(getgenv().Slot,getgenv().WaitTime,getgenv().AxeDupeAmount)
-  end)
- 
-  Section:Button("Drop all axes",function()
-     Player.Character.Humanoid.Health = 0
-  end)
- 
-  
- --#endregion
- 
- 
-  --#region Item
-  Tab5 = UI:CreateTab("Item","11145825488") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab5:CreateSection("Item Teleport") ------------------------------------------------------------------------------------------------------------------
- 
- 
-  Section:PlrList("Player items",false,true,function(Value)
-     getgenv().PlayersItems = Value
-  end)
- 
- 
-  getgenv().PlayersItems = Player.Name
- 
- 
-  Section:Toggle("Lasso",false,function(Value)
-     getgenv().Lasso = Value
-  end)
- 
- 
-  Section:Toggle("Group selection",false,function(Value)
-     GroupSelection(Value,getgenv().PlayersItems)
-  end)
- 
- 
-  Section:Toggle("Click selection",false,function(Value)
-     ClickToTP(Value)
-  end)
- 
- 
-  Section:Button("Teleport selected items",function()
-     library:Notify("Butter!","Teleport Starting!",1.5)
-     SelectionTp(Player.Character.HumanoidRootPart.CFrame,getgenv().PlayersItems,getgenv().TeleportBack,getgenv().TeleportDirection)
-     if getgenv().DeselectAfterTeleport then DeselectAll() end
-  end)
- 
- 
-  Section:Button("Deselect all",function()
-     DeselectAll()
-     getgenv().StopTeleportSelectedItems = true
-  end)
- 
- 
-  Section = Tab:CreateSection("Settings") ------------------------------------------------------------------------------------------------------------------
- 
-  Section:Toggle("Deselect after Teleport",true,function(Value)
-     getgenv().DeselectAfterTeleport = Value
-  end)
- 
-  Section:Toggle("Teleport Back",true,function(Value)
-     getgenv().TeleportBack = Value
-  end)
- 
-  Section:DropDown("TeleportDirection",{"Sideways","Upwards"},false,function(Value)
-     getgenv().TeleportDirection = Value
-  end)
- 
-  getgenv().TeleportDirection = "Upwards"
- 
- --#endregion 
- 
- 
-  --#region Stacker
-  Tab6 = UI:CreateTab("Stacker","11145825488") ---------------------------------------------------------------------------------------------------------------------
-  Section = Tab6:CreateSection("Stacker") -------------------------------------------------------------------------------------------------------------------------
- 
-  Section:PlrList("Player items",false,true,function(Value)
-     getgenv().PlayersItems = Value
-  end)
- 
-  getgenv().PlayersItems = Player.Name
- 
-  Section:Slider("Length",1,1,100,false,function(Value)
-     StackerLength = Value
-  end)
- 
-  Section:Slider("Height",1,1,100,false,function(Value)
-     StackerHeight = Value
-  end)
- 
-  Section:Slider("Width",1,1,100,false,function(Value)
-     StackerWidth = Value
-  end)
- 
-  Section:Slider("Speed",0.1,0,1,true,function(Value)
-     Sped = Value
-  end)
- 
-  Section:Toggle("Beta",false,function(Value)
-     getgenv().SynapseStacker = Value
-  end)
- 
- Section:Button("Start",function()
-     getgenv().StackerStop = false
-     library:Notify("Butter!","Click a Iteam",1.5)
-     Stacker(StackerLength,StackerHeight,StackerWidth,getgenv().PlayersItems,Sped)
- end)
- 
+
  Section:Button("Stop",function()
-     getgenv().StackerStop = true
+    getgenv().treestop = true
  end)
- 
- 
- --#endregion 
- 
- 
-  --#region Auto Buy
-  Tab7 = UI:CreateTab("Auto Buy","6031265983") ---------------------------------------------------------------------------------------------------------------------
-  Section = Tab7:CreateSection("Auto Buy") -------------------------------------------------------------------------------------------------------------------------
- 
-  Section:DropDown("Select Item",GrabShopItems(),false,function(Value)
-     ItemToBuy = string.split(Value, " - ")[1]
-     print(ItemToBuy)
-  end)
- 
-  ItemToBuy = "BasicHatchet"
- 
-  Section:Slider("Amount",1,1,100,false,function(Value)
-     Amount = Value
-  end)
- 
-  Amount = 1
- 
-  Section:Toggle("Open box",false,function(Value)
-     OpenBox = Value
-  end)
- 
-  OpenBox = false
- 
-  Section:Button("Purchase",function()
-     AutoBuy(ItemToBuy, Amount, OpenBox, Rukiry)
-  end)
- 
-  Section = Tab:CreateSection("Special Autobuy") -------------------------------------------------------------------------------------------------------------------------
- 
-  Section:Button("Purchase All Blueprints",function()
-     NumberNeedToBuyAllBps = 0
-     for i, v in next, GetBlueprints() do
-         NumberNeedToBuyAllBps = NumberNeedToBuyAllBps + GetPrice(v,1)
-     end
- 
-     if tonumber(Player.leaderstats.Money.Value) < NumberNeedToBuyAllBps then return library:Notify("Butter!","Not enough money to proceed with procedure you need $" .. NumberNeedToBuyAllBps,3) end
- 
-     for i, v in next, GetBlueprints() do
-         AutoBuy(v, 1, true, false)
-     end
-  end)
- 
-  Section:Button("Buy rukiry axe - $7400",function()
-     if tonumber(Player.leaderstats.Money.Value) < 7400 then return library:Notify("Butter!","Not enough money to proceed with procedure you need $7400",3) end
-     AutoBuy("BagOfSand",1,true,true)
-     AutoBuy("CanOfWorms",1,true,true)
-     AutoBuy("LightBulb",1,true,true)
-     wait(2)
-     PickUpTool("Rukiryaxe")
-  end)
- 
- 
- 
- Section = Tab:CreateSection("Others") -------------------------------------------------------------------------------------------------------------------------
- 
- Section:Button("Bridge",function()
-     Pay(15)
+
+ Section:Button("Sell tree",function()
+    SellTree()
  end)
- 
- Section:Button("Ferry Ticket",function()
-     Pay(13)
+
+ Section = Tab:CreateSection("Wood Help") --------------------------------------------------------------------------------------------------------------------
+
+ Section:Toggle("Wood Selector Lasso",false,function(Value)
+    getgenv().Lasso = Value
  end)
+
+
+ Section:Toggle("One Unit Cutter",false,function(Value)
+    OneUnitCutter(Value)
+ end)
+
+
+ Section:Button("Sell Selected",function()
+    SellSelected()
+ end)
+
+ Section:Button("Stop Sell",function()
+    getgenv().StopSellSelected = true
+ end)
+
+ Section:Button("Deselect all",function()
+    DeselectAll()
+ end)
+
+
+ Section = Tab:CreateSection("Mod Wood") --------------------------------------------------------------------------------------------------------------------
+
+
+ Section:Button("Mod Sawmill",function()
+    ModSawmill()
+ end)
+
+ Section:Button("Mod Wood",function()
+    Modwood()
+ end)
+
+ Section:Button("Stop Mod",function()
+    getgenv().ModStop = true
+ end)
+
+ Section = Tab:CreateSection("Wood Teleport") --------------------------------------------------------------------------------------------------------------------
+
+ Section:Button("Get Cut Trees",function()
+    GetCutTrees()
+ end)
+
+--#endregion
  
- Section:Button("Power Of Ease",function()
-     if not Player.SuperBlueprint.Value then
-     Pay(3)
+
+ --#region Slot
+ Tab = UI:CreateTab("Slot","6034333276") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Base Help") ---------------------------------------------------------------------------------------------------------------------
+
+ Section:Button('Free Land', function()
+     FreeLand()
+ end)
+
+ Section:Button('Max Land', function()
+     MaxLand()
+ end)
+
+ Section:Toggle("Land Art",false,function(Value)
+     LandArt(Value)
+ end)
+
+ Section:Button('Force Save', function()
+    Forcesave()
+ end)
+
+--#endregion
+
+
+ --#region Dupe
+ Tab = UI:CreateTab("Dupe","6035053278") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Axe Dupe") ----------------------------------------------------------------------------------------------------------------------
+
+ Section:Slider("Slot",1,1,6,false,function(Value)
+    getgenv().Slot = Value
+ end)
+
+ Section:Slider("WaitTime",1,-1,30,true,function(Value)
+    getgenv().WaitTime = Value
+ end)
+
+ Section:Slider("Amount",1,1,30,false,function(Value)
+    getgenv().AxeDupeAmount = Value
+ end)
+
+ Section:Button("Axe Dupe",function()
+    AxeDupe(getgenv().Slot,getgenv().WaitTime,getgenv().AxeDupeAmount)
+ end)
+
+ Section:Button("Drop all axes",function()
+    Player.Character.Humanoid.Health = 0
+ end)
+
+ 
+--#endregion
+
+
+ --#region Item
+ Tab = UI:CreateTab("Item","11145825488") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Item Teleport") ------------------------------------------------------------------------------------------------------------------
+
+
+ Section:PlrList("Player items",false,true,function(Value)
+    getgenv().PlayersItems = Value
+ end)
+
+
+ getgenv().PlayersItems = Player.Name
+
+
+ Section:Toggle("Lasso",false,function(Value)
+    getgenv().Lasso = Value
+ end)
+
+
+ Section:Toggle("Group selection",false,function(Value)
+    GroupSelection(Value,getgenv().PlayersItems)
+ end)
+
+
+ Section:Toggle("Click selection",false,function(Value)
+    ClickToTP(Value)
+ end)
+
+
+ Section:Button("Teleport selected items",function()
+    library:Notify("Butter!","Teleport Starting!",1.5)
+    SelectionTp(Player.Character.HumanoidRootPart.CFrame,getgenv().PlayersItems,getgenv().TeleportBack,getgenv().TeleportDirection)
+    if getgenv().DeselectAfterTeleport then DeselectAll() end
+ end)
+
+
+ Section:Button("Deselect all",function()
+    DeselectAll()
+    getgenv().StopTeleportSelectedItems = true
+ end)
+
+
+ Section = Tab:CreateSection("Settings") ------------------------------------------------------------------------------------------------------------------
+
+ Section:Toggle("Deselect after Teleport",true,function(Value)
+    getgenv().DeselectAfterTeleport = Value
+ end)
+
+ Section:Toggle("Teleport Back",true,function(Value)
+    getgenv().TeleportBack = Value
+ end)
+
+ Section:DropDown("TeleportDirection",{"Sideways","Upwards"},false,function(Value)
+	getgenv().TeleportDirection = Value
+ end)
+
+ getgenv().TeleportDirection = "Upwards"
+
+--#endregion 
+
+
+ --#region Stacker
+ Tab = UI:CreateTab("Stacker","11145825488") ---------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Stacker") -------------------------------------------------------------------------------------------------------------------------
+
+ Section:PlrList("Player items",false,true,function(Value)
+    getgenv().PlayersItems = Value
+ end)
+
+ getgenv().PlayersItems = Player.Name
+
+ Section:Slider("Length",1,1,100,false,function(Value)
+    StackerLength = Value
+ end)
+
+ Section:Slider("Height",1,1,100,false,function(Value)
+    StackerHeight = Value
+ end)
+
+ Section:Slider("Width",1,1,100,false,function(Value)
+    StackerWidth = Value
+ end)
+
+ Section:Slider("Speed",0.1,0,1,true,function(Value)
+    Sped = Value
+ end)
+
+ Section:Toggle("Beta",false,function(Value)
+    getgenv().SynapseStacker = Value
+ end)
+
+Section:Button("Start",function()
+    getgenv().StackerStop = false
+    library:Notify("Butter!","Click a Iteam",1.5)
+    Stacker(StackerLength,StackerHeight,StackerWidth,getgenv().PlayersItems,Sped)
+end)
+
+Section:Button("Stop",function()
+    getgenv().StackerStop = true
+end)
+
+
+--#endregion 
+
+
+ --#region Auto Buy
+ Tab = UI:CreateTab("Auto Buy","6031265983") ---------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Auto Buy") -------------------------------------------------------------------------------------------------------------------------
+
+ Section:DropDown("Select Item",GrabShopItems(),false,function(Value)
+	ItemToBuy = string.split(Value, " - ")[1]
+    print(ItemToBuy)
+ end)
+
+ ItemToBuy = "BasicHatchet"
+
+ Section:Slider("Amount",1,1,100,false,function(Value)
+    Amount = Value
+ end)
+
+ Amount = 1
+
+ Section:Toggle("Open box",false,function(Value)
+    OpenBox = Value
+ end)
+
+ OpenBox = false
+
+ Section:Button("Purchase",function()
+    AutoBuy(ItemToBuy, Amount, OpenBox, Rukiry)
+ end)
+
+ Section = Tab:CreateSection("Special Autobuy") -------------------------------------------------------------------------------------------------------------------------
+
+ Section:Button("Purchase All Blueprints",function()
+    NumberNeedToBuyAllBps = 0
+    for i, v in next, GetBlueprints() do
+        NumberNeedToBuyAllBps = NumberNeedToBuyAllBps + GetPrice(v,1)
+    end
+
+    if tonumber(Player.leaderstats.Money.Value) < NumberNeedToBuyAllBps then return library:Notify("Butter!","Not enough money to proceed with procedure you need $" .. NumberNeedToBuyAllBps,3) end
+
+    for i, v in next, GetBlueprints() do
+        AutoBuy(v, 1, true, false)
+    end
+ end)
+
+ Section:Button("Buy rukiry axe - $7400",function()
+    if tonumber(Player.leaderstats.Money.Value) < 7400 then return library:Notify("Butter!","Not enough money to proceed with procedure you need $7400",3) end
+    AutoBuy("BagOfSand",1,true,true)
+    AutoBuy("CanOfWorms",1,true,true)
+    AutoBuy("LightBulb",1,true,true)
+    wait(2)
+    PickUpTool("Rukiryaxe")
+ end)
+
+
+
+Section = Tab:CreateSection("Others") -------------------------------------------------------------------------------------------------------------------------
+
+Section:Button("Bridge",function()
+    Pay(15)
+end)
+
+Section:Button("Ferry Ticket",function()
+    Pay(13)
+end)
+
+Section:Button("Power Of Ease",function()
+    if not Player.SuperBlueprint.Value then
+    Pay(3)
+    end
+end)
+
+--#endregion
+
+
+ --#region vehicle 
+ Tab = UI:CreateTab("Vehicle","6034754441") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Vehicle Movement") -----------------------------------------------------------------------------------------------------------------
+
+
+ Section:Toggle("Vehicle Fly",false,function(Value)
+    if Value == true then
+        if Player.Character.Humanoid then
+            local CurrentSeat = Player.Character.Humanoid.SeatPart
+            if CurrentSeat and CurrentSeat.Parent.Type.Value == "Vehicle" then
+                NOFLY()
+                wait()
+                sFLY(true)
+                else
+                library:Notify("Butter!","You need to be in a car",1.5)
+            end
+        end
+    else
+        NOFLY()
+    end
+ end)
+
+
+ Section:Slider("Vehicle Fly Speed",1,1,15,false,function(Value)
+    iyflyspeed = Value
+    vehicleflyspeed = Value
+ end)
+
+--#endregion
+
+
+ --#region settings 
+ Tab = UI:CreateTab("Settings","6031280882") ----------------------------------------------------------------------------------------------------------------------
+ Section = Tab:CreateSection("Settings") --------------------------------------------------------------------------------------------------------------------------
+
+ Section:KeyBind("Toggle UI",ConfigData.HideUI,function(Value)
+    ConfigData.HideUI = Value
+	HideUi()
+    SaveSettings()
+ end)
+
+
+
+ if not getgenv().ButterRan then
+ getgenv().PlotColor = Color3.new(0.494, 0.408, 0.247)
+ end
+
+ Section:ColorPicker("Plot Color",getgenv().PlotColor,function(Value)
+    for i,v in pairs(game.workspace.Properties:GetDescendants()) do
+        if v.Name == "Square" or v.Name == "OriginSquare" then
+            v.Color = Value
+            getgenv().PlotColor = Value
+        end
      end
  end)
- 
- --#endregion
- 
- 
-  --#region vehicle 
-  Tab8 = UI:CreateTab("Vehicle","6034754441") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab8:CreateSection("Vehicle Movement") -----------------------------------------------------------------------------------------------------------------
- 
- 
-  Section:Toggle("Vehicle Fly",false,function(Value)
-     if Value == true then
-         if Player.Character.Humanoid then
-             local CurrentSeat = Player.Character.Humanoid.SeatPart
-             if CurrentSeat and CurrentSeat.Parent.Type.Value == "Vehicle" then
-                 NOFLY()
-                 wait()
-                 sFLY(true)
-                 else
-                 library:Notify("Butter!","You need to be in a car",1.5)
-             end
-         end
-     else
-         NOFLY()
+
+ Section:DropDown("Material",{"Air", "Asphalt", "Basalt", "Brick", "Cardboard", "Carpet", "CeramicTiles", "ClayRoofTiles", "Cobblestone", "Concrete", "CorrodedMetal", "CrackedLava", "DiamondPlate", "Fabric", "Foil", "ForceField", "Glacier","Glass", "Granite","Grass", "Ground","Ice", "LeafyGrass","Leather", "Metal","Mud","Neon","Pavement","Pebble","Plaster","Plastic","Marble","Rock","Roofshingles", "Rubber","Salt","Sand","Sandstone","Slate", "SmoothPlastic","Snow","Water","Wood","WoodPlanks"},false,function(Value)
+    for i,v in pairs(game.workspace.Properties:GetDescendants()) do
+        if v.Name == "Square" or v.Name == "OriginSquare" then
+            v.Material = Value
+        end
      end
-  end)
- 
- 
-  Section:Slider("Vehicle Fly Speed",1,1,15,false,function(Value)
-     iyflyspeed = Value
-     vehicleflyspeed = Value
-  end)
- 
- --#endregion
- 
- 
-  --#region settings 
-  Tab9 = UI:CreateTab("Settings","6031280882") ----------------------------------------------------------------------------------------------------------------------
-  Section = Tab9:CreateSection("Settings") --------------------------------------------------------------------------------------------------------------------------
- 
-  Section:KeyBind("Toggle UI",ConfigData.HideUI,function(Value)
-     ConfigData.HideUI = Value
-     HideUi()
-     SaveSettings()
-  end)
- 
- 
- 
-  if not getgenv().ButterRan then
-  getgenv().PlotColor = Color3.new(0.494, 0.408, 0.247)
-  end
- 
-  Section:ColorPicker("Plot Color",getgenv().PlotColor,function(Value)
-     for i,v in pairs(game.workspace.Properties:GetDescendants()) do
-         if v.Name == "Square" or v.Name == "OriginSquare" then
-             v.Color = Value
-             getgenv().PlotColor = Value
-         end
-      end
-  end)
- 
-  Section:DropDown("Material",{"Air", "Asphalt", "Basalt", "Brick", "Cardboard", "Carpet", "CeramicTiles", "ClayRoofTiles", "Cobblestone", "Concrete", "CorrodedMetal", "CrackedLava", "DiamondPlate", "Fabric", "Foil", "ForceField", "Glacier","Glass", "Granite","Grass", "Ground","Ice", "LeafyGrass","Leather", "Metal","Mud","Neon","Pavement","Pebble","Plaster","Plastic","Marble","Rock","Roofshingles", "Rubber","Salt","Sand","Sandstone","Slate", "SmoothPlastic","Snow","Water","Wood","WoodPlanks"},false,function(Value)
-     for i,v in pairs(game.workspace.Properties:GetDescendants()) do
-         if v.Name == "Square" or v.Name == "OriginSquare" then
-             v.Material = Value
-         end
-      end
-  end)
- 
- --#endregion
- 
- 
- 
- 
- 
- 
- SelectPage("Player")
+ end)
+
+--#endregion
+
+
+
+
+
+
+SelectPage("Player")
